@@ -1,4 +1,4 @@
-# upsi - smart contract
+# upsi - chain
 
 This repository contains the smart contract for the bachelor thesis "upsi - A decentralized STI tracing approach"
 
@@ -24,6 +24,6 @@ npm install
 ```
 
 ### Test
-```
+```console
 npm test
 ```
