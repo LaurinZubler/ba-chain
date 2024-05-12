@@ -38,3 +38,16 @@ npx hardhat node
 ```console
 npx hardhat test
 ```
+
+## Deployment
+### Configuration variables
+```console
+npx hardhat vars set INFURA_API_KEY
+npx hardhat vars set SEPOLIA_PRIVATE_KEY
+```
+More information: https://hardhat.org/hardhat-runner/docs/guides/configuration-variables
+
+### Deploy Smart Contract 
+```console
+npx hardhat ignition deploy ./ignition/modules/Upsi.js --network optimismSepolia
+```
