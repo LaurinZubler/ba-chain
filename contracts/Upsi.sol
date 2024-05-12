@@ -20,6 +20,12 @@ contract Upsi is Ownable, AccessControl {
     _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
   }
 
+  function transferOwnership(address newOwner) public override onlyOwner {
+    super.transferOwnership(newOwner);
+    _grantRole(DEFAULT_ADMIN_ROLE, newOwner);
+    _revokeRole(DEFAULT_ADMIN_ROLE, msg.sender);
+  }
+
   function grantEventEmitterRole(address _address) public onlyOwner {
     grantRole(EVENT_EMITTER_ROLE, _address);
   }

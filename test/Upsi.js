@@ -5,7 +5,7 @@ const {loadFixture} = require("@nomicfoundation/hardhat-toolbox/network-helpers"
 describe('Upsi', function () {
   
   async function deployUpsiContractFixture() {
-    const [owner, eventEmitter, unauthorized, tester, ...others] = await ethers.getSigners();
+    const [owner, eventEmitter, unauthorized, tester, newOwner, ...others] = await ethers.getSigners();
 
     const infectionEvent = {
       infection: "STI",
@@ -19,8 +19,9 @@ describe('Upsi', function () {
     await upsiContract.waitForDeployment();
 
     const eventEmitterRole = await upsiContract.EVENT_EMITTER_ROLE();
+    const defaultAdminRole = await upsiContract.DEFAULT_ADMIN_ROLE();
 
-    return { upsiContract, owner, eventEmitter, unauthorized, infectionEvent, eventEmitterRole};
+    return { upsiContract, owner, eventEmitter, unauthorized, newOwner, infectionEvent, eventEmitterRole, defaultAdminRole};
   }
 
 
@@ -29,12 +30,47 @@ describe('Upsi', function () {
 //------------------------------------------------------------------------------------------------
 
   describe("deployment", function () {
-    it("owner", async function () {
-      const { upsiContract, owner } = await loadFixture(deployUpsiContractFixture);
+    it("constructor", async function () {
+      const { upsiContract, owner, defaultAdminRole } = await loadFixture(deployUpsiContractFixture);
       expect(await upsiContract.owner()).to.equal(owner.address);
+      expect(await upsiContract.hasRole(defaultAdminRole, owner.address)).to.be.true;
     });
   });
 
+
+//------------------------------------------------------------------------------------------------
+// transferOwnership()
+//------------------------------------------------------------------------------------------------
+
+
+  describe("transferOwnership()", function () {
+    it('unauthorized', async function () {
+      const { upsiContract, unauthorized } = await loadFixture(deployUpsiContractFixture);
+
+      await expectRevert(
+        upsiContract.connect(unauthorized).transferOwnership(unauthorized.address),
+        "OwnableUnauthorizedAccount"
+      );
+    });
+
+    it('success', async function () {
+      const { upsiContract, owner, newOwner, defaultAdminRole } = await loadFixture(deployUpsiContractFixture);
+
+      expect(await upsiContract.owner()).to.equal(owner.address);
+      expect(await upsiContract.hasRole(defaultAdminRole, owner.address)).to.be.true;
+
+      expect(await upsiContract.owner()).to.not.equal(newOwner.address);
+      expect(await upsiContract.hasRole(defaultAdminRole, newOwner.address)).to.be.false;
+
+      await upsiContract.transferOwnership(newOwner.address);
+
+      expect(await upsiContract.owner()).to.not.equal(owner.address);
+      expect(await upsiContract.hasRole(defaultAdminRole, owner.address)).to.be.false;
+
+      expect(await upsiContract.owner()).to.equal(newOwner.address);
+      expect(await upsiContract.hasRole(defaultAdminRole, newOwner.address)).to.be.true;
+    });
+  });
 
 //------------------------------------------------------------------------------------------------
 // grantEventEmitterRole()
