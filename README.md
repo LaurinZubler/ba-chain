@@ -19,35 +19,41 @@ This project is using Hardhat for smart contract development.
 node.js: `20.13.1` 
 
 ### Install Dependencies
-```console
+```shell
 npm install
 ```
 
 ## Testing
 ### Compile Smart Contract
-```console
+```shell
 npx hardhat compile
 ```
 
 ### Start Hardhat Node
-```console
+```shell
 npx hardhat node
 ```
 
 ### Run Tests
-```console
+```shell
 npx hardhat test
 ```
 
 ## Deployment
 ### Configuration variables
-```console
+```shell
 npx hardhat vars set INFURA_API_KEY
-npx hardhat vars set SEPOLIA_PRIVATE_KEY
+npx hardhat vars set OPTIMISM_SEPOLIA_PRIVATE_KEY
+npx hardhat vars set ETHERSCAN_OPTIMISM_KEY
 ```
 More information: https://hardhat.org/hardhat-runner/docs/guides/configuration-variables
 
 ### Deploy Smart Contract 
-```console
+```shell
 npx hardhat ignition deploy ./ignition/modules/Upsi.js --network optimismSepolia
+```
+
+### Verify Smart Contract
+```shell
+npx hardhat verify --network optimismSepolia <CONTRACT_ADDRESS>
 ```
