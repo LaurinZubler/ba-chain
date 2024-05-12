@@ -18,12 +18,23 @@ This project is using Hardhat for smart contract development.
 ## Local Setup
 node.js: `20.13.1` 
 
-### Install Dependencies (once)
+### Install Dependencies
 ```console
 npm install
 ```
 
-### Test
+## Testing
+### Compile Smart Contract
 ```console
-npm test
+npx hardhat compile
+```
+
+### Start Hardhat Node
+```console
+npx hardhat node
+```
+
+### Run Tests
+```console
+npx hardhat test
 ```

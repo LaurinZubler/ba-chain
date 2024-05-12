@@ -2,14 +2,15 @@
   "name": "ba-chain",
   "version": "1.0.0",
   "description": "Bachelor Thesis \"upsi\" smart contract",
-  "main": "index.js",
-  "scripts": {
-    "test": "npx hardhat test"
-  },
   "author": "Laurin Zubler",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/hardhat-upgrades": "^3.1.0",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "ethers": "^6.12.1",
     "hardhat": "^2.22.3"
   }
 }
