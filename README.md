@@ -48,12 +48,13 @@ npx hardhat vars set ETHERSCAN_OPTIMISM_KEY
 ```
 More information: https://hardhat.org/hardhat-runner/docs/guides/configuration-variables
 
-### Deploy Smart Contract 
+### Deploy Contract 
 ```shell
+npx hardhat ignition deploy ./ignition/modules/Upsi.js --network hardhat
 npx hardhat ignition deploy ./ignition/modules/Upsi.js --network optimismSepolia
 ```
 
-### Verify Smart Contract
+### Verify Contract
 ```shell
 npx hardhat verify --network optimismSepolia <CONTRACT_ADDRESS>
 ```
