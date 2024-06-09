@@ -1,18 +1,18 @@
 const {expect} = require("chai");
-const {constants, expectRevert} = require('@openzeppelin/test-helpers');
+const {expectRevert} = require('@openzeppelin/test-helpers');
 const {loadFixture} = require("@nomicfoundation/hardhat-toolbox/network-helpers");
 
 describe('Upsi', function () {
   
   async function deployUpsiContractFixture() {
-    const [owner, eventEmitter, unauthorized, tester, newOwner, ...others] = await ethers.getSigners();
+    const [owner, eventEmitter, unauthorized, newOwner, ...others] = await ethers.getSigners();
 
     const infectionEvent = {
-      infection: "STI",
-      infectee: [constants.ZERO_ADDRESS],
-      tester: tester,
-      testTime: "YYYY-MM-DDTHH:mm:ss",
-      signature: "signature"
+      infection: "SMILING_SYNDROME",
+      infectee: ["0x829471a67676a3d5c1dbbdd8dd40879d240ab235dd51c3bc9d2820197bbf97b0e0c1031206f25101482b6eabb71be74c"],
+      tester: "e48fae3c23174f2716476d59ed0c016793407c7f3291180601ba33fc45eb8528",
+      testTime: 1717961702,
+      signature: "0x8dad99f34b763d19463b896be19394cdabab8ebd39d899d123f874518d4315cbb514e119b863fd07c47a4cd85b1b50950587d26b1e1f8a238f6de2b18641448093135aef66be37c9ccd3de54c0b336da703217c285e254bbd8be132aba83ac2a"
     }
 
     const upsiContract = await ethers.deployContract("Upsi");

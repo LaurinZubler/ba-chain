@@ -10,9 +10,9 @@ contract Upsi is Ownable, AccessControl {
 
   event InfectionEvent(
     string infection,
-    address[] infectee,
-    address tester,
-    string testTime,
+    string[] infectee,
+    string tester,
+    uint testTime,
     string signature
   );
 
@@ -36,9 +36,9 @@ contract Upsi is Ownable, AccessControl {
 
   function emitInfectionEvent(
     string calldata _infection,
-    address[] calldata _infectee,
-    address _tester,
-    string calldata _testTimeUtc,
+    string[] calldata _infectee,
+    string calldata _tester,
+    uint _testTimeUtc,
     string calldata _signature
   ) public {
     require(hasRole(EVENT_EMITTER_ROLE, msg.sender), "Permission denied! Not authorized to emit infection event");
