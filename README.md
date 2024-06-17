@@ -8,7 +8,7 @@ Advisor: Dr. Thomas Bocek [thomas.bocek@ost.ch](mailto:thomas.bocek@ost.ch)
 
 ## Project Dashboard
 The documentation as well as other useful links are published on the project dashboard:  
-https://laurinzubler.github.io/ba-documentation/
+https://laurinzubler.github.io/ba-doc-public/
 
 ## Hardhat
 This project is using Hardhat for smart contract development.
